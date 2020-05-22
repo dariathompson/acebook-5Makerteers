@@ -25,11 +25,20 @@ RSpec.feature 'Authentication', type: :feature do
     expect(page).to have_content 'Tester'
   end
 
-  # scenario "User cannot sign in with invalid credentials" do
-  #   sign_up_and_logout
-  #   click_link "Log In"
-  #   fill_in "email", with: "tester.com"
-  #   fill_in "password", with: "testing1"
-  #   click_button "Login"
-  # end
+  scenario "User cannot sign in with invalid email" do
+    sign_up_and_logout
+    click_link "Log In"
+    fill_in "user_email", with: "tester.com"
+    fill_in "user_password", with: "testing1"
+    click_button "Log in"
+    expect(page).to have_content 'Invalid Email'
+  end
+  scenario "User cannot sign in with invalid password" do
+    sign_up_and_logout
+    click_link "Log In"
+    fill_in "user_email", with: "tester@mail.com"
+    fill_in "user_password", with: "testing12"
+    click_button "Log in"
+    expect(page).to have_content 'Forgot your password?'
+  end
 end
