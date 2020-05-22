@@ -13,9 +13,8 @@ RSpec.feature "Timeline", type: :feature do
     fill_in "user_password", with: "testing1"
     fill_in "user_password_confirmation", with: "testing1"
     click_button "Sign up"
-    click_link "New Post"
     fill_in "post_message", with: "Hello, world!"
-    click_button "Submit"
+    click_button "Post to Tester's wall"
   end
 
   scenario "Can submit posts and view them" do
@@ -36,7 +35,7 @@ RSpec.feature "Timeline", type: :feature do
 
   scenario "You cannot see others users posts if you're not signed in." do
     sign_up_and_create
-    click_link "Logout"
+    click_link "Log Out"
     expect(page).not_to have_content("Hello, world!")
     expect(page).not_to have_content("Tester")
   end

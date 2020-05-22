@@ -3,8 +3,16 @@ require 'rails_helper'
 RSpec.describe PostsController, type: :controller do
   describe "GET /new " do
     it "responds with 200" do
+      sign_in
       get :new
       expect(response).to have_http_status(200)
+    end
+    it "blocks unauthenticated access" do
+      sign_in nil
+    
+      get :new
+    
+      expect(response).to redirect_to(new_user_session_path)
     end
   end
 
@@ -14,6 +22,7 @@ RSpec.describe PostsController, type: :controller do
       allow_any_instance_of(PostsController).to receive(:current_user) { user }
     end
     it "responds with 200" do
+      sign_in
       post :create, params: { post: { message: "Hello, world!", wall_id: 0 } }
       expect(response).to redirect_to("/users/0")
     end
@@ -40,15 +49,18 @@ RSpec.describe PostsController, type: :controller do
 # end
 
   describe "GET /" do
-    
-    let(:user) { User.create(name: "name", username: 'username', email: "email@mail.com", password: "password" )}
-    before do
-      allow_any_instance_of(PostsController).to receive(:current_user) { user }
-    end
-
+  
     it "responds with 200" do
+      sign_in
       get :index
       expect(response).to have_http_status(200)
+    end
+    it "blocks unauthenticated access" do
+      sign_in nil
+
+      get :index
+    
+      expect(response).to redirect_to(new_user_session_path)
     end
   end
 

@@ -11,7 +11,7 @@ scenario "User can signup with valid credentials" do
     fill_in "user_password", with: "testing1"
     fill_in "user_password_confirmation", with: "testing1"
     click_button "Sign up"
-    expect(page).to have_content("Welcome Tester")
+    expect(page).to have_content("Tester")
   end
 
   scenario "User cannot signup with invalid email" do
@@ -47,6 +47,6 @@ scenario "User can signup with valid credentials" do
     fill_in "user_password", with: "testing"
     fill_in "user_password_confirmation", with: "testing"
     click_button "Sign up"
-    expect(page).to have_content("Welcome Tester")
+    expect(page).to have_content("Tester")
   end
 end

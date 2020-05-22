@@ -10,7 +10,7 @@ RSpec.feature "Authentication", type: :feature do
     fill_in "user_password", with: "testing1"
     fill_in "user_password_confirmation", with: "testing1"
     click_button "Sign up"
-    click_link "Logout"
+    click_link "Log Out"
   end
   
   scenario "User can sign in with valid credentials" do
@@ -20,7 +20,7 @@ RSpec.feature "Authentication", type: :feature do
     fill_in "user_password", with: "testing1"
     click_button "Log in"
     expect(page).to have_content "Signed in successfully"
-    expect(page).to have_content "Welcome Tester"
+    expect(page).to have_content "Tester"
   end
 
   # scenario "User cannot sign in with invalid credentials" do
