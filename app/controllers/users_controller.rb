@@ -1,18 +1,21 @@
-class UsersController < ApplicationController
+# frozen_string_literal: true
 
+class UsersController < ApplicationController
   def show
-    return render_not_found unless User.exists?(id: params[:id]) || User.exists?(username: params[:username])
+    unless User.exists?(id: params[:id]) || User.exists?(username: params[:username])
+      return render_not_found
+    end
+
     @user = User.find_by_username(params[:username]) || User.find(params[:id])
     @new_post = Post.new
     @posts = Post.where(wall_id: @user.id).order(created_at: :desc)
     @comment = Comment.new
 
-    if owner?(@user.id)
-      @placeholder = "What's on your mind?"
-    else
-      @placeholder = "Write on #{@user.name}'s wall"
-    end
-
+    @placeholder = if owner?(@user.id)
+                     "What's on your mind?"
+                   else
+                     "Write on #{@user.name}'s wall"
+                   end
   end
 
   def index

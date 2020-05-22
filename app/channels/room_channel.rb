@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class RoomChannel < ApplicationCable::Channel
   # This is when a person is connected to the channel
   def subscribed
-    stream_from "room_channel"
+    stream_from 'room_channel'
   end
 
   def unsubscribed
