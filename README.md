@@ -1,29 +1,32 @@
 # AceBook
 
-REQUIRED INSTRUCTIONS:
+Project to build Facebook clone is deployed via Heroku: [click here](https://social-acebook.herokuapp.com/users/sign_in)
 
-1. Fork this repository to `acebook-teamname` and customize
-the below**
+## Getting Started
 
-[You can find the engineering project outline here.](https://github.com/makersacademy/course/tree/master/engineering_projects/rails)
+Ensure you have the following setup on your machine:
+- Bundle
+- PostgreSQL
 
-2. The card wall is here: <please update>
+`git clone` this repository and `cd` into the directory.
 
-## How to contribute to this project
-See [CONTRIBUTING.md](CONTRIBUTING.md)
+Install dependencies:
 
-## Quickstart
-
-First, clone this repository. Then:
-
-```bash
-> bundle install
-> bin/rails db:create
-> bin/rails db:migrate
-
-> bundle exec rspec # Run the tests to ensure it works
-> bin/rails server # Start the server at localhost:3000
-
-> rails db:migrate
-> rails db:migrate RAILS_ENV=test
 ```
+$ bundle install
+```
+
+Create and migrate the database:
+
+```
+$ rails db:create
+$ rails db:migrate
+```
+
+To run the project, start up the server:
+
+```
+$ rails server
+```
+
+Then navigate to `localhost:3000` in your browser
